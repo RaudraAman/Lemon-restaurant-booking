@@ -1,45 +1,49 @@
-# Little Lemon Restaurant Booking — Meta Front-End Capstone
+# Little Lemon — Meta Front-End Developer Capstone
 
-A responsive, accessible React reservation demo built with Vite and React Router.
+An original, responsive React + Vite restaurant reservation demo. The design is **inspired by** the Little Lemon brand style and publicly shared capstone wireframes; it is not a copy of another student's code or an official fixed Figma specification.
 
-## Features
-- Home page, booking form and confirmation page
-- Date-based mock time slots, guest count (1–10), and occasion selection
-- Client-side validation and accessible error messages
-- Semantic HTML and responsive layout
-- Session-based demo reservation persistence
-- Unit and component tests with Vitest and React Testing Library
+## Start
 
-## Requirements
-Node.js 18+ and npm.
-
-## Run locally
 ```bash
 npm install
 npm run dev
-```
-Open the local URL shown by Vite (usually http://localhost:5173).
-
-## Tests
-```bash
 npm test
-```
-
-## Production build
-```bash
 npm run build
-npm run preview
 ```
 
-## Project structure
-- `src/components/BookingForm.jsx`: form UI and state
-- `src/pages/BookingPage.jsx`: booking screen
-- `src/pages/ConfirmationPage.jsx`: reservation summary
-- `src/utils/booking.js`: time slot rules, validation, formatting
-- `src/services/reservations.js`: sessionStorage persistence
+## Peer-review rubric mapping
 
-## Important limitations
-This is a **frontend-only educational demo**, not a real reservation service. No API or backend is connected, and no real restaurant availability or booking is guaranteed. Availability slots are mock data; bookings are stored only in the current browser session. Real production booking requires server-side validation, inventory and concurrency controls, and a reservation API.
+| Criterion | Implementation |
+| --- | --- |
+| UI/UX and wireframe | `src/styles.css`, homepage, booking page; see `DESIGN.md` |
+| Semantic HTML | Header, Footer, Home, BookingPage, BookingForm |
+| Mobile + desktop | CSS media queries at 900px and 620px |
+| SEO / Open Graph | `index.html` |
+| BookingForm child component | `BookingPage.jsx` renders `<BookingForm />` |
+| Parent owns available times | `BookingPage.jsx` uses `useReducer(initializeTimes, updateTimes)` and passes `availableTimes` + `dispatch` |
+| Client-side validation | `src/utils/booking.js` and accessible inline errors |
+| Unit tests | `src/tests/` |
+| Passing tests | `npm test` |
 
-## Submission
-Push the complete repository to GitHub and submit the public repository URL in Coursera's peer-graded assignment.
+## Booking flow
+
+Home → Reserve a table → Choose date/time/guests/occasion/name/email → Validate → Confirmation. Date changes update available slots from the parent. Availability is **deterministic mock data**, not a live reservation service. No real booking is created or persisted.
+
+## Design references
+
+- https://github.com/CamiloMedel/LittleLemon-Capstone (public Figma process and prototype)
+- https://github.com/NaNcmyk/Little-Lemon (public Figma and Little Lemon style guide explanation)
+
+Brand colors: green `#495E57`, yellow `#F4CE14`, peach `#EE9972`. Typography: Markazi Text and Karla. The visual treatment and layout here are independently implemented.
+
+## Notes for reviewers
+
+- Run `npm install && npm test && npm run dev`.
+- Check the reservation form and try invalid inputs.
+- Resize browser to 375px, 768px and 1440px.
+- This demo uses no backend; confirmation is illustrative only.
+- Open Graph image and URL tags should be added after deployment when real public URLs exist.
+
+## Local restaurant assets
+
+This version uses **local image files** rather than external Unsplash image URLs or emoji food placeholders. See [ASSET-SOURCES.md](ASSET-SOURCES.md) and [ASSET-LICENSE.txt](ASSET-LICENSE.txt) for attribution and rights notes.
